@@ -1,0 +1,24 @@
+{% load ad_view %}
+<div class="media mb-2">
+            <span class="mr-2 align-right text-black-50"
+                  style="width: 24px;height: 24px;text-align: right;color: #4e555b;font-size: 0.8em">{{ ad_index }}.</span>
+
+    <p class="media-body pb-1 mb-0 small lh-125">
+                <span class="d-block" style="font-size: 1.2em;font-weight: 500;">
+                    <a class="text-black text-decoration-none" href="/ad?id={{ ad.id }}">
+                    {{ ad.headline }}
+                    </a>
+                </span>
+
+        <span class="mr-2 badge badge-secondary">{{ ad.category.name }}</span>
+        <span class="mr-2 badge badge-light">{{ ad.location.name }}</span>
+        <span class="mr-2 text-black-50 ">Post by {{ ad.contact_person }} {% ad_time_ago ad.published_time %}</span>
+        <span><a class="text-black-50 text-decoration-none" href="/ad/report/{{ ad.id }}">Report</a></span>
+        <span class="text-black-50 text-decoration-none mr-0 ml-0">|</span>
+        <span><a class="text-black-50 text-decoration-none" href="/ad?id={{ ad.id }}"> Contact</a></span>
+
+        {% if is_editable %}
+            <span><a class="text-black-50 text-decoration-none" href="/post/{{ ad.id }}">| Edit</a></span>
+        {% endif %}
+    </p>
+</div>

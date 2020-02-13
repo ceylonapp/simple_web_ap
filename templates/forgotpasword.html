@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row col-12 mb-4">
+
+        {% if messages.success_message %}
+            <div class="col-8">
+                <div class="alert alert-success" role="alert">
+                    <span>{{ messages.success_message }}</span>
+                </div>
+
+                <a href="/login">Login</a>
+            </div>
+        {% else %}
+            <div class="col-4">
+
+                <form action="/password_reset" method="post">
+                    <legend>Login</legend>
+                    {% if error and error.authentication_fail %}
+                        <div class="alert alert-danger" role="alert">
+                            <span>Invalid login details.</span>
+                        </div>
+                    {% endif %}
+                    {% csrf_token %}
+                    <div class="form-group row">
+                        <label for="username" class="col-sm-3 col-form-label">Username</label>
+                        <div class="col-sm-9">
+                            <input type="text" required class="form-control form-control-sm" id="username"
+                                   name="username">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Reset</button>
+                </form>
+
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

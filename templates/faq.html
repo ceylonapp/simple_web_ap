@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+    <div>
+        <h3 class="d-block text-gray-dark" style="margin-left: 24px;">FAQ</h3>
+    </div>
+    <div>
+        {% for faq in faq_list %}
+            <div class="media text-muted">
+               <span class="mr-2 align-right text-black-50"
+                     style="width: 24px;height: 24px;text-align: right;color: #4e555b;font-size: 0.8em">{{ forloop.counter }}.</span>
+                <p class="media-body pb-1 mb-0 small lh-125">
+                    <strong class="d-block text-gray-dark">{{ faq.title }}</strong>
+                    {{ faq.answer }}
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

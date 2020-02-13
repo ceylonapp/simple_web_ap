@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row col-12 mb-4">
+        <div class="col-4">
+            <form action="/login" method="post">
+                <legend>Login</legend>
+                {% if error and error.authentication_fail %}
+                    <div class="alert alert-danger" role="alert">
+                        <span>Invalid login details.</span>
+                    </div>
+                {% endif %}
+                {% include "parts/username_password_form_part.html" %}
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+    <div class="row mb-4 col-12">
+        <div class="col-4">
+            <a href="/password_reset">Forgot Password</a>
+        </div>
+    </div>
+    <div class="row mb-4 col-12">
+        <div class="col-6">
+            <form action="/create_account" method="post">
+                <legend>Create Account</legend>
+                {% if error and error.username_exist %}
+                    <div class="alert alert-danger" role="alert">
+                        <span>That username is taken. Please choose another.</span>
+                    </div>
+                {% endif %}
+                {% include "parts/username_password_form_part.html" %}
+                <button type="submit" class="btn btn-success">Create account</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

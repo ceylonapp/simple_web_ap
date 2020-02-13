@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+    <h4>Hi {{ profile.user.username }}</h4>
+
+    {% if not profile.user.email %}
+        <div class="alert alert-warning" role="alert">
+            <span>We can't help your to reset password without your email. please update it now</span>
+        </div>
+    {% endif %}
+    <div class="row col-12 mb-4">
+        <div class="col-4">
+            <form
+
+                    method="post">
+                {% if error and error.post_error %}
+                    <div class="alert alert-danger" role="alert">
+                        <span>{{ error.post_error }}</span>
+                    </div>
+                {% endif %}
+                {% csrf_token %}
+
+                <table style="width: 100%">
+                    <tr>
+                        <td>Username</td>
+                        <td><input type="text" readonly
+                                   class="form-control form-control-sm" id="title" name="contact_number"
+                                   value="{{ profile.user.username }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>First Name</td>
+                        <td><input type="text"
+                                   class="form-control form-control-sm" id="title" name="first_name"
+                                   value="{{ profile.user.first_name }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Last Name</td>
+                        <td><input type="text"
+                                   class="form-control form-control-sm" id="title" name="last_name"
+                                   value="{{ profile.user.last_name }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><input type="text"
+                                   class="form-control form-control-sm" id="title" name="email"
+                                   value="{{ profile.user.email }}">
+                        </td>
+                    </tr>
+{#                    <tr>#}
+{#                        <td>Contact Number</td>#}
+{#                        <td><input type="text"#}
+{#                                   class="form-control form-control-sm" id="title" name="contact_number"#}
+{#                                   value="{{ profile.contact_number }}">#}
+{#                        </td>#}
+{#                    </tr>#}
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="submit" class="btn btn-sm btn-primary mt-2">Update</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}
